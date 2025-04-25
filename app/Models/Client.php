@@ -10,4 +10,9 @@ class Client extends Model
         'name',
         'hash',
     ];
+
+    public function threads()
+    {
+        return $this->hasMany(Thread::class);
+    }
 }
