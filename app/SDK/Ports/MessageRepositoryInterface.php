@@ -9,4 +9,6 @@ interface MessageRepositoryInterface
     public function create(int $threadId,
     string $role,
     array $message,): Message;
+
+    public function listMessages(int $threadId): array;
 }
