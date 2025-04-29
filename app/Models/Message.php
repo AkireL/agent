@@ -12,6 +12,10 @@ class Message extends Model
         'content',
     ];
 
+    protected $casts = [
+        'content' => 'array',
+    ];
+
     public function thread()
     {
         return $this->belongsTo(Thread::class);

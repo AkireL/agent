@@ -20,4 +20,9 @@ class Runner extends Model
     {
         return $this->belongsTo(Message::class);
     }
+
+    public function runState()
+    {
+        return $this->hasMany(RunnerState::class);
+    }
 }

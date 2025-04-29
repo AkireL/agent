@@ -14,4 +14,9 @@ class Thread extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function runners()
+    {
+        return $this->hasMany(Runner::class);
+    }
 }
