@@ -3,8 +3,9 @@
 namespace App\SDK\Infrastructure;
 
 use App\Models\Runner;
+use App\SDK\Ports\RunnerRepositoryInterface;
 
-class EloquentRunner implements \App\SDK\Ports\RunnerRepositoryInterface
+class EloquentRunner implements RunnerRepositoryInterface
 {
     private function create($threadId)
     {

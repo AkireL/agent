@@ -2,21 +2,24 @@
 
 namespace App\SDK\Infrastructure;
 
+use App\Models\Message as ModelsMessage;
 use App\SDK\Entities\Message;
+use App\SDK\Ports\MessageRepositoryInterface;
 
-class EloquentMessage implements \App\SDK\Ports\MessageRepositoryInterface
+class EloquentMessage implements MessageRepositoryInterface
 {
     public function create(int $threadId,
     string $role,
-    array $message,): Message
+    array $message): Message
     {
-        $message = \App\Models\Message::create([
+        $message = ModelsMessage::create([
             'thread_id' => $threadId,
             'role' => $role,
             'content' => $message,
         ]);
 
         return new Message(
+            id: $message->id,
             role: $message->role,
             content: $message->content,
             threadId: $message->thread_id
@@ -25,7 +28,7 @@ class EloquentMessage implements \App\SDK\Ports\MessageRepositoryInterface
 
     public function listMessages(int $threadId): array
     {
-        $messages = \App\Models\Message::where('thread_id', $threadId)->get();
+        $messages = ModelsMessage::where('thread_id', $threadId)->get();
 
         return $messages->map(function ($message) {
             $data = [];

@@ -2,7 +2,7 @@
 
 namespace App\SDK\Ports;
 
-use App\SDK\Thread;
+use App\SDK\Entities\Thread;
 
 interface ThreadRepositoryInterface
 {
