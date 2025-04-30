@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('runner_id')->constrained('runners')->onDelete('cascade');
             $table->foreignId('message_id')->constrained('messages')->onDelete('cascade')->nullable();
-            $table->string('state');
+            $table->string('state')->nullable();
             $table->timestamps();
         });
     }

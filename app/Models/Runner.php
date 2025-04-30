@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Database\Factories\RunnerFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Runner extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'thread_id',
-        'message_id',
     ];
 
     public function thread()
@@ -16,13 +19,13 @@ class Runner extends Model
         return $this->belongsTo(Thread::class);
     }
 
-    public function message()
-    {
-        return $this->belongsTo(Message::class);
-    }
-
     public function runState()
     {
         return $this->hasMany(RunnerState::class);
+    }
+
+    public static function newFactory()
+    {
+        return RunnerFactory::new();
     }
 }

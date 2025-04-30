@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('runners', function (Blueprint $table) {
             $table->id();
             $table->foreignId('thread_id')->constrained('threads')->onDelete('cascade');
-            $table->foreignId('message_id')->constrained('messages')->onDelete('cascade');
             $table->timestamps();
         });
     }
