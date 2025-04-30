@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SDK;
+namespace App\SDK\Entities;
 
 class Thread
 {
