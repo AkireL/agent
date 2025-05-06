@@ -36,4 +36,51 @@ class MessageTest extends TestCase
             'role' => 'user',
         ]);
     }
+
+    /**
+     * @test
+     */
+    public function it_return_list_messages(): void
+    {
+        $thread = Thread::factory()->create();
+
+        $messageRepository = new EloquentMessage();
+
+        $messageRepository->create(
+            $thread->getKey(),
+            'user',
+            [
+                'content' => 'Hello world',
+            ]
+        );
+
+        $messageRepository->create(
+            $thread->getKey(),
+            'user',
+            [
+                'content' => 'Lorem ipsum dolor sit amet 1',
+            ]
+        );
+
+        $messageRepository->create(
+            $thread->getKey(),
+            'user',
+            [
+                'content' => 'Lorem ipsum dolor sit amet 2',
+            ]
+        );
+
+        $messageRepository->create(
+            $thread->getKey(),
+            'user',
+            [
+                'content' => 'Lorem ipsum dolor sit amet 3',
+            ]
+        );
+
+        $messages = $messageRepository->listMessages($thread->getKey());
+
+        var_dump($messages);
+        $this->assertCount(4, $messages);
+    }
 }
