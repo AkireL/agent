@@ -10,7 +10,7 @@ class OllamaClient
     private Client $guzzleClient;
 
     public function __construct(
-        private readonly string $host = 'http://localhost:11434',
+        private readonly string $host,
         string $apiKey = '',
     )
     {
