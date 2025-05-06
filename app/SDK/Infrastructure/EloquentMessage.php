@@ -28,7 +28,10 @@ class EloquentMessage implements MessageRepositoryInterface
 
     public function listMessages(int $threadId): array
     {
-        $messages = ModelsMessage::where('thread_id', $threadId)->get();
+        $messages = ModelsMessage::query()
+            ->where('thread_id', $threadId)
+            ->orderBy('id', 'asc')
+            ->get();
 
         return $messages->map(function ($message) {
             $data = [];
@@ -49,6 +52,7 @@ class EloquentMessage implements MessageRepositoryInterface
             $data['content'] = $content;
 
             return $data;
-        })->toArray();
+        })
+        ->toArray();
     }
 }
