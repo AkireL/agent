@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Client;
 use App\Models\Thread;
+use App\SDK\Entities\Tools\Tools;
 use App\SDK\Services\Ollama\Ollama;
 use App\SDK\UseCases\Agent\Agent;
 use Tests\TestCase;
@@ -58,7 +59,8 @@ class AgentTest extends TestCase
 
         $llm = Ollama::client()
             ->setSystemPrompt($systemPrompt)
-            ->setModel('qwen3');
+            ->setModel('qwen3')
+            ->setTools(Tools::get());
 
         $agent = new Agent(
             $client->getKey(),
