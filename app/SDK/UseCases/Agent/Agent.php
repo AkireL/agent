@@ -2,6 +2,7 @@
 
 namespace App\SDK\UseCases\Agent;
 
+use App\SDK\Entities\Tools\ToolExecutor;
 use App\SDK\Infrastructure\EloquentMessage;
 use App\SDK\Infrastructure\EloquentRunner;
 use App\SDK\Infrastructure\EloquentRunnerState;
@@ -101,8 +102,9 @@ class Agent
             'required_action'
         );
 
-        // TODO: Execute tool
-        $responseTool = "";
+        // Execute tool
+        $executor = new ToolExecutor($response['message']['tool_calls']);
+        $responseTool = $executor->execute();
 
         $message = $this->messageRepository->create(
             $threadId,
